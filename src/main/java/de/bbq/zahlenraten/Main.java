@@ -1,12 +1,10 @@
 package de.bbq.zahlenraten;
 
 import java.util.Scanner;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
 
         System.out.println("Willkommen zum Zahlenraten-Spiel!\n");
         System.out.println("Spieler 1, bitte gib deinen Namen ein: ");

@@ -9,8 +9,35 @@ public class Main {
         Random random = new Random();
 
         while (true) {
+            int minZahl = 0;
+            int maxZahl = 0;
+            while (true) {
+                System.out.println("Gib die untere Grenze ein (eine ganze Zahl):");
+                try {
+                    String eingabe = scanner.nextLine();
+                    minZahl = Integer.parseInt(eingabe.trim());
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Das war keine gültige Zahl! Versuche es noch mal.");
+                }
+            }
 
-            int zahlenBereich =
+            while (true) {
+                System.out.println("Bitte gib die obere Grenze ein (eine ganze Zahl größer als die untere Grenze):");
+                try {
+                    String eingabe = scanner.nextLine();
+                    maxZahl = Integer.parseInt(eingabe.trim());
+                    if (maxZahl <= minZahl) {
+                        System.out.println("Die obere Grenze muss größer als die untere Grenze sein! Versuche es noch mal.");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Das war keine gültige Zahl! Versuche es noch mal.");
+                }
+            }
+
+            int computerZahl = random.nextInt(11);
             System.out.println("Ich habe eine Zahl zwischen 0 und 10 ausgedacht. Rate sie!\n");
 
 

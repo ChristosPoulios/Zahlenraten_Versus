@@ -11,6 +11,7 @@ public class Main {
         while (true) {
             int minZahl = 0;
             int maxZahl = 0;
+            int versuche = 1;
 
             while (true) {
                 System.out.println("Gib die untere Grenze ein (eine ganze Zahl):\n");
@@ -41,10 +42,10 @@ public class Main {
             int computerZahl = random.nextInt(maxZahl - minZahl + 1) + minZahl;
             System.out.println("Ich habe eine Zahl zwischen " + minZahl + " und " + maxZahl + " ausgewählt. Versuche sie zu erraten!\n");
 
-
             while (true) {
 
-                System.out.println("Gebe die Zahl ein und drücke die Enter-Taste\n");
+                System.out.println("\nGebe die Zahl ein und drücke die Enter-Taste\n");
+                System.out.println("Versuch: " + versuche);
 
                 int spielerZahl;
                 try {
@@ -56,6 +57,9 @@ public class Main {
                         System.out.println("Bitte gib eine Zahl zwischen " + minZahl + " und " + maxZahl + " ein!\n");
                         continue;
                     }
+
+                    versuche++;
+
                 } catch (NumberFormatException e) {
                     System.out.println("Das war keine gültige Zahl! Versuche es noch mal.\n");
                     continue;
@@ -69,7 +73,7 @@ public class Main {
                 }
             }
 
-            System.out.println("Richtig!\n");
+            System.out.println("Richtig! Du hast " + (versuche - 1) + " gebraucht\n");
             System.out.println("Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter).\n");
 
             String eingabe = scanner.nextLine();

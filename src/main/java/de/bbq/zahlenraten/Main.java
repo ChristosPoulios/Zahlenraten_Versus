@@ -9,14 +9,42 @@ public class Main {
         Random random = new Random();
 
         while (true) {
+            int minZahl = 0;
+            int maxZahl = 0;
 
-            int computerZahl = random.nextInt(11);
-            System.out.println("Ich habe eine Zahl zwischen 0 und 10 ausgedacht. Rate sie!\n");
+            while (true) {
+                System.out.println("Gib die untere Grenze ein (eine ganze Zahl):\n");
+                try {
+                    String eingabe = scanner.nextLine();
+                    minZahl = Integer.parseInt(eingabe.trim());
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Das war keine gültige Zahl! Versuche es noch mal.\n");
+                }
+            }
+
+            while (true) {
+                System.out.println("Bitte gib die obere Grenze ein (eine ganze Zahl größer als die untere Grenze):\n");
+                try {
+                    String eingabe = scanner.nextLine();
+                    maxZahl = Integer.parseInt(eingabe.trim());
+                    if (maxZahl <= minZahl) {
+                        System.out.println("Die obere Grenze muss größer als die untere Grenze sein! Versuche es noch mal.\n");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Das war keine gültige Zahl! Versuche es noch mal.\n");
+                }
+            }
+
+            int computerZahl = random.nextInt(maxZahl - minZahl + 1) + minZahl;
+            System.out.println("Ich habe eine Zahl zwischen " + minZahl + " und " + maxZahl + " ausgewählt. Versuche sie zu erraten!\n");
 
 
             while (true) {
 
-                System.out.println("Gebe die Zahl ein und drücke die Enter-Taste");
+                System.out.println("Gebe die Zahl ein und drücke die Enter-Taste\n");
 
                 int spielerZahl;
                 try {
@@ -24,12 +52,12 @@ public class Main {
                     spielerZahl = Integer.parseInt(eingabe.trim());
 
 
-                    if (spielerZahl < 0 || spielerZahl > 10) {
-                        System.out.println("Bitte gib eine Zahl zwischen 0 und 10 ein!");
+                    if (spielerZahl < minZahl || spielerZahl > maxZahl) {
+                        System.out.println("Bitte gib eine Zahl zwischen " + minZahl + " und " + maxZahl + " ein!\n");
                         continue;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Das war keine gültige Zahl! Versuche es noch mal.");
+                    System.out.println("Das war keine gültige Zahl! Versuche es noch mal.\n");
                     continue;
                 }
 
@@ -37,12 +65,12 @@ public class Main {
                 if (spielerZahl == computerZahl) {
                     break;
                 } else {
-                    System.out.println("Falsch! Versuch es noch mal!");
+                    System.out.println("Falsch! Versuch es noch mal!\n");
                 }
             }
 
-            System.out.println("Richtig!");
-            System.out.println("Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter).");
+            System.out.println("Richtig!\n");
+            System.out.println("Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter).\n");
 
             String eingabe = scanner.nextLine();
             if (!eingabe.equals("1")) {
@@ -50,7 +78,7 @@ public class Main {
             }
         }
 
-        System.out.println("Tschüss! Bis zum nächsten Mal :-)");
+        System.out.println("Tschüss! Bis zum nächsten Mal :-)\n");
         scanner.close();
     }
 }

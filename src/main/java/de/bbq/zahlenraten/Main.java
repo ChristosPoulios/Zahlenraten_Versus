@@ -14,7 +14,7 @@ public class Main {
             int versuche = 1;
 
             while (true) {
-                System.out.println("Gib die untere Grenze ein (eine ganze Zahl):\n");
+                System.out.println("Gib die untere Grenze ein (eine ganze Zahl):");
                 try {
                     String eingabe = scanner.nextLine();
                     minZahl = Integer.parseInt(eingabe.trim());
@@ -25,7 +25,7 @@ public class Main {
             }
 
             while (true) {
-                System.out.println("Bitte gib die obere Grenze ein (eine ganze Zahl größer als die untere Grenze):\n");
+                System.out.println("Bitte gib die obere Grenze ein (eine ganze Zahl größer als die untere Grenze):");
                 try {
                     String eingabe = scanner.nextLine();
                     maxZahl = Integer.parseInt(eingabe.trim());
@@ -73,7 +73,7 @@ public class Main {
                 }
             }
 
-            System.out.println("Richtig! Du hast " + (versuche - 1) + " gebraucht\n");
+            System.out.println("Richtig! Du hast " + (versuche - 1) + " Versuche gebraucht\n");
             System.out.println("Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter).\n");
 
             String eingabe = scanner.nextLine();

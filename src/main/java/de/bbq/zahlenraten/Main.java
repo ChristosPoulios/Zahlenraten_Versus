@@ -8,12 +8,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        boolean erstesSpiel = true;
-
         while (true) {
 
             int computerZahl = random.nextInt(11);
-            System.out.println("Ich habe eine Zahl zwischen 0 und 10 ausgedacht. Rate sie!");
+            System.out.println("Ich habe eine Zahl zwischen 0 und 10 ausgedacht. Rate sie!\n");
 
 
             while (true) {

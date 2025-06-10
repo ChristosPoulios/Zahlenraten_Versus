@@ -20,6 +20,7 @@ public class Main {
         while (true) {
             int minNumber;
             int maxNumber;
+            int tryCount = 1;
 
             while (true) {
                 System.out.println("Bitte gebt die untere Grenze des Zahlenbereichs ein (ganze Zahl):");
@@ -35,8 +36,8 @@ public class Main {
             while (true) {
                 System.out.println("Bitte gebt die obere Grenze des Zahlenbereichs ein (eine ganze Zahl größer als die untere Grenze):");
                 try {
-                    String eingabe = scanner.nextLine();
-                    maxNumber = Integer.parseInt(eingabe.trim());
+                    String input = scanner.nextLine();
+                    maxNumber = Integer.parseInt(input.trim());
                     if (maxNumber <= minNumber) {
                         System.out.println("Die obere Grenze muss größer als die untere Grenze sein! Versuche es noch mal.\n");
                     } else {
@@ -52,8 +53,8 @@ public class Main {
                 System.out.println(currentChooser + ", bitte denke an eine Zahl zwischen " + minNumber + " und " + maxNumber + " (inklusive) und drücke Enter, wenn du bereit bist.");
                 System.out.println("Gib deine Zahl ein (keine Sorge, " + currentGuesser + " wird sie nicht sehen):");
                 try {
-                    String eingabe = scanner.nextLine();
-                    secretNumber = Integer.parseInt(eingabe.trim());
+                    String input = scanner.nextLine();
+                    secretNumber = Integer.parseInt(input.trim());
                     if (secretNumber < minNumber || secretNumber > maxNumber) {
                         System.out.println("Die Zahl muss zwischen " + minNumber + " und " + maxNumber + " liegen! Versuche es noch mal.\n");
                     } else {
@@ -64,18 +65,24 @@ public class Main {
                 }
             }
 
+            for(int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+
             while (true) {
+                System.out.println(currentGuesser + ", du musst die Zahl von " + currentChooser + " erraten!");
+                System.out.println("Die Zahl liegt zwischen " + minNumber + " und " + maxNumber + ".");
+                System.out.println("Versuch: " + tryCount + "\n");
+                System.out.println("Gebe die Zahl ein und drücke die Enter-Taste\n");
 
-                System.out.println("\nGebe die Zahl ein und drücke die Enter-Taste\n");
-
-                int spielerZahl;
+                int playerNumber;
                 try {
-                    String eingabe = scanner.nextLine();
-                    spielerZahl = Integer.parseInt(eingabe.trim());
+                    String input = scanner.nextLine();
+                    playerNumber = Integer.parseInt(input.trim());
 
 
-                    if (spielerZahl < minNumber || spielerZahl > maxNumber) {
-                        System.out.println("Bitte gib eine Zahl zwischen " + minNumber + " und " + maxNumber + " ein!\n");
+                    if (playerNumber < minNumber || playerNumber > maxNumber) {
+                        System.out.println("Bitte gib eine Zahl zwischen " + minNumber + " und " + maxNumber + " ein!");
                         continue;
                     }
 
@@ -84,24 +91,36 @@ public class Main {
                     continue;
                 }
 
+                tryCount++;
 
-                if (spielerZahl == secretNumber) {
+                if (playerNumber == secretNumber) {
                     break;
                 } else {
-                    System.out.println("Falsch! Versuch es noch mal!\n");
+                    if (playerNumber < secretNumber) {
+                        System.out.println("Falsch! Die gesuchte Zahl ist größer! Versuch es noch mal!\n");
+                    } else {
+                        System.out.println("Falsch! Die gesuchte Zahl ist kleiner! Versuch es noch mal!\n");
+                    }
                 }
             }
 
+            System.out.println("Herzlichen Glückwunsch, " + currentGuesser + "! Du hast die Zahl " + secretNumber + " erraten!");
+            System.out.println(currentGuesser + ", du hast " + (tryCount - 1) + " Versuche gebraucht, um die Zahl zu erraten.");
 
-            System.out.println("Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter).\n");
+            String temp = currentGuesser;
+            currentGuesser = currentChooser;
+            currentChooser = temp;
 
-            String eingabe = scanner.nextLine();
-            if (!eingabe.equals("1")) {
+            System.out.println("Noch mal spielen? Wenn ja, tippe 1 (und Enter), sonst egal was (und Enter).");
+            System.out.println("In der nächsten Runde legt " + currentChooser + " die Zahl fest und " + currentGuesser + " muss raten!");
+
+            String input = scanner.nextLine();
+            if (!input.equals("1")) {
                 break;
             }
         }
 
-        System.out.println("Tschüss! Bis zum nächsten Mal :-)\n");
+        System.out.println("Tschüss! Bis zum nächsten Mal :-)");
         scanner.close();
     }
 }
